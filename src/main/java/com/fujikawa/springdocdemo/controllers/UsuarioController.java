@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fujikawa.springdocdemo.dtos.UsuarioDTO;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("usuarios")
+@SecurityRequirement(name = "bearer-key")
 public class UsuarioController {
 
     @GetMapping(produces = "application/json")
