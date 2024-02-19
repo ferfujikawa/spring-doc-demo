@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @Configuration
@@ -12,9 +15,21 @@ public class SpringDocConfigurations {
 
     @Bean
     public OpenAPI customOpenAPI() {
-    return new OpenAPI()
-        .components(new Components()
-        .addSecuritySchemes("bearer-key",
-        new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
-    } 
+        return new OpenAPI()
+            .components(new Components()
+                .addSecuritySchemes("bearer-key",
+                    new SecurityScheme()
+                        .type(SecurityScheme.Type.HTTP)
+                        .scheme("bearer")
+                        .bearerFormat("JWT")))
+                .info(new Info()
+                    .title("SpringDoc Demo API")
+                    .description("API de demonstração do SpringDoc")
+                    .contact(new Contact()
+                        .name("Contato 1")
+                        .email("contato1@email.com"))
+                .license(new License()
+                    .name("Apache 2.0")
+                    .url("http://springdocdemo.fujikawa.com/api/licenca")));
+    }
 }
